@@ -1,0 +1,27 @@
+{
+  "name": "bravia",
+  "version": "1.0.0",
+  "description": "Control your Sony Bravia TV",
+  "main": "lib/index.js",
+  "dependencies": {
+    "node-uuid": "^1.4.2",
+    "request": "^2.51.0",
+    "tough-cookie-filestore": "0.0.1",
+    "wake_on_lan": "0.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Alan Reid"
+  },
+  "license": "Apache 2.0",
+  "gitHead": "8b1c838b486d939656bd3efe08d9840bd95d3039",
+  "readme": "Bravia Remote Control\n============\n\nControl your Sony Bravia TV using nodejs.\n\n### One time setup\n\n##### TV Setup\n* Turn on your TV\n* On the TV go to Settings > Network > Home network setup > Remote device/Renderer > On\n* On the TV go to Settings > Network > Home network setup > IP Control > Authentication > Normal and Pre-Shared Key\n* On the TV go to Settings > Network > Home network setup > Remote device/Renderer > Enter Pre-Shared Key > 0000 (or whatever you want your PSK Key to be)\n* On the TV go to Settings > Network > Home network setup > Remote device/Renderer > Simple IP Control > On\n\n##### Node Setup\n* Find your TV's IP address\n* Run `npm install`\n* Edit the `demo.js` file with your TV's IP & PSK Key\n* Run `node demo.js` \n* If you're running this script for the first time, you will be asked to enter a 4-digit code shown on your TV\n\n\n### Authentication\nNew Method - If you provide a PSK key to the function it will use that to authenticate rather than going through the old method.\n\nOld Method - This library handles the authentication process with the TV, saving the generated cookie as a file that can be accessed in later executions. If you need to refresh the credentials for some reason, just remove any content from the `cookies.json` file.\n\n\n### Usage\n```\n// Accepts two parameters, IP and PSKKey\nbravia('192.168.1.100', '0000', function(client) {\n\n  // List available commands\n  client.getCommandNames(function(list) {\n    console.log(list);\n  });\n\n  // Call a command\n  client.exec('Netflix');\n\n});\n\n```\n\n\n### Available commands\nThe available commands may vary from model to model. I'm getting the following ones with the Sony Bravia KDL-50W805:\n\n```PowerOff, Input, GGuide, EPG, Favorites, Display, Home, Options, Return, Up, Down, Right, Left, Confirm, Red, Green, Yellow, Blue, Num1, Num2, Num3, Num4, Num5, Num6, Num7, Num8, Num9, Num0, Num11, Num12, VolumeUp, VolumeDown, Mute, ChannelUp, ChannelDown, SubTitle, ClosedCaption, Enter, DOT, Analog, Teletext, Exit, Analog2, *AD, Digital, Analog?, BS, CS, BSCS, Ddata, PicOff, Tv_Radio, Theater, SEN, InternetWidgets, InternetVideo, Netflix, SceneSelect, Mode3D, iManual, Audio, Wide, Jump, PAP, MyEPG, ProgramDescription, WriteChapter, TrackID, TenKey, AppliCast, acTVila, DeleteVideo, PhotoFrame, TvPause, KeyPad, Media, SyncMenu, Forward, Play, Rewind, Prev, Stop, Next, Rec, Pause, Eject, FlashPlus, FlashMinus, TopMenu, PopUpMenu, RakurakuStart, OneTouchTimeRec, OneTouchView, OneTouchRec, OneTouchStop, DUX, FootballMode, Social```\n\n### Additional commands\nI've also added a `PowerOn` command to that list, that implements WakeOnLAN to turn your TV on.\n\n### TODO\n* Clean up the code a bit\n* TV auto-detection (via UPnP or similar)\n* Shortcut commands\n\n\n### Disclaimer\nThis is an experimental and non-official library developed just for fun, I'm not affiliated with Sony in any way. This software is distributed under the Apache 2.0 License: http://www.apache.org/licenses/LICENSE-2.0\n",
+  "readmeFilename": "README.md",
+  "_id": "bravia@1.0.0",
+  "_shasum": "cdd17c040c8fde6b9ef52420408d518e4d8e2ad0",
+  "_from": "git+https://github.com/alisalama/bravia.git",
+  "_resolved": "git+https://github.com/alisalama/bravia.git#8b1c838b486d939656bd3efe08d9840bd95d3039"
+}
